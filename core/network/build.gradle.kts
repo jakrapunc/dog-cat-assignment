@@ -49,6 +49,12 @@ dependencies {
     //coroutines
     implementation(libs.kotlin.coroutines)
 
+    //koin
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
     //room
     api(libs.room)
     ksp(libs.room.ksp)

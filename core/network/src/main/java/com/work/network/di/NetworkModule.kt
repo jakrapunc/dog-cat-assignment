@@ -1,0 +1,27 @@
+package com.work.network.di
+
+import com.kabigon.weatherforecast.data.base.network.NetworkClient
+import com.work.network.base.ApiManager
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
+import retrofit2.Retrofit
+
+val networkModule = module {
+    single<CoroutineDispatcher>(named("io")) { Dispatchers.IO }
+
+    factory {
+        ApiManager(
+            get(),
+            Retrofit.Builder()
+        )
+    }
+
+    factory {
+        NetworkClient(
+            androidContext()
+        )
+    }
+}
