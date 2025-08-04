@@ -1,21 +1,20 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.ksp)
+
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.work.cnd"
+    namespace = "com.work.network"
     compileSdk = libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
-        applicationId = "com.work.cnd"
         minSdk = libs.versions.minSdkVersion.get().toInt()
-        targetSdk = libs.versions.targetSdkVersion.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,17 +33,28 @@ android {
     kotlin {
         jvmToolchain(11)
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
     implementation(project(":core:base"))
 
+    //retrofit
+    api(libs.retrofit2)
+    api(libs.retrofit2.gsonConverter)
+    api(libs.retrofit2.okhttp)
+    api(libs.retrofit2.okhttpLoggingInterceptor)
+
+    api(libs.google.code.gson)
+
+    //coroutines
+    implementation(libs.kotlin.coroutines)
+
+    //room
+    api(libs.room)
+    ksp(libs.room.ksp)
+    api(libs.room.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
 }

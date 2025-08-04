@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "CatAndDog"
 include(":app")
- 
+include(":core")
+include(":core:network")
+include(":core:base")
