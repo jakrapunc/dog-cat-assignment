@@ -21,7 +21,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -40,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.work.base.compose.component.LoadingScreen
 import com.work.cat_service.data.model.CatBreedItem
 import com.work.cat_service.data.model.response.CatBreedsResponse
 import org.koin.androidx.compose.koinViewModel
@@ -68,21 +68,6 @@ fun CatScreen(
                 uiState = uiState
             )
         }
-    }
-}
-
-@Composable
-fun LoadingScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize()
-            .background(Color.White),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .size(50.dp)
-        )
     }
 }
 
