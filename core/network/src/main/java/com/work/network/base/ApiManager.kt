@@ -1,6 +1,5 @@
 package com.work.network.base
 
-import com.kabigon.weatherforecast.data.base.network.NetworkClient
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

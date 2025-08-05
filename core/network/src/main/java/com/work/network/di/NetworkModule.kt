@@ -1,6 +1,6 @@
 package com.work.network.di
 
-import com.kabigon.weatherforecast.data.base.network.NetworkClient
+import com.work.network.base.NetworkClient
 import com.work.network.base.ApiManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

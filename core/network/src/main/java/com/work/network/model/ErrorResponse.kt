@@ -1,4 +1,4 @@
-package com.kabigon.weatherforecast.data.base.model
+package com.work.network.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

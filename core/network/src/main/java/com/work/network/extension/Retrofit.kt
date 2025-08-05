@@ -1,7 +1,7 @@
 package com.work.network.extension
 
-import com.kabigon.weatherforecast.data.base.model.ErrorResponse
-import com.kabigon.weatherforecast.data.base.model.ResultResponse
+import com.work.network.model.ErrorResponse
+import com.work.network.model.ResultResponse
 import retrofit2.Response
 
 fun <T> Response<T>.toNetworkResult(): ResultResponse<T> {

@@ -1,4 +1,4 @@
-package com.kabigon.weatherforecast.data.base.model
+package com.work.network.model
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
