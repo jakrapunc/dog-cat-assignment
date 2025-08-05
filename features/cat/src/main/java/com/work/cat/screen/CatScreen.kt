@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -59,9 +60,28 @@ fun CatScreen(
     uiState: CatScreenViewModel.UIState,
 ) {
     Scaffold() {
-        CatScreenContent(
-            modifier = Modifier.padding(it),
-            uiState = uiState
+        if (uiState.isLoading) {
+            LoadingScreen()
+        } else {
+            CatScreenContent(
+                modifier = Modifier.padding(it),
+                uiState = uiState
+            )
+        }
+    }
+}
+
+@Composable
+fun LoadingScreen() {
+    Column(
+        modifier = Modifier.fillMaxSize()
+            .background(Color.White),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier
+                .size(50.dp)
         )
     }
 }
@@ -71,7 +91,7 @@ fun CatScreenContent(
     modifier: Modifier = Modifier,
     uiState: CatScreenViewModel.UIState,
 ) {
-    var currentExpand by rememberSaveable { mutableStateOf<Int?>(0) }
+    var currentExpand by rememberSaveable { mutableStateOf<Int?>(null) }
 
     Column(
         modifier = modifier

@@ -57,6 +57,7 @@ class CatScreenViewModel(
             }.flowOn(
                 coroutineDispatcher
             ).collect { result ->
+                _isLoading.value = false
                 _breeds.value = result
             }
         }
