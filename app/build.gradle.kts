@@ -41,7 +41,10 @@ android {
 
 dependencies {
     implementation(project(":core:base"))
-
+    implementation(project(":core:network"))
+    implementation(project(":features:cat"))
+    implementation(project(":shares:cat-service"))
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
