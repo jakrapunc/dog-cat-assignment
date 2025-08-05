@@ -50,10 +50,9 @@ dependencies {
     implementation(libs.kotlin.coroutines)
 
     //koin
-    implementation(project.dependencies.platform(libs.koin.bom))
-    implementation(libs.koin.core)
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
+    api(project.dependencies.platform(libs.koin.bom))
+    api(libs.koin.core)
+    api(libs.koin.android)
 
     //room
     api(libs.room)

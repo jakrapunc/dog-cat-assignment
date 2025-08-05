@@ -11,6 +11,8 @@ import retrofit2.Retrofit
 
 val networkModule = module {
     single<CoroutineDispatcher>(named("io")) { Dispatchers.IO }
+    single<CoroutineDispatcher>(named("main")) { Dispatchers.Main }
+    single<CoroutineDispatcher>(named("default")) { Dispatchers.Default }
 
     factory {
         ApiManager(
