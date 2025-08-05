@@ -3,6 +3,7 @@ package com.work.cnd
 import android.app.Application
 import com.work.cat.di.catModule
 import com.work.cat_service.di.catServiceModule
+import com.work.dog_service.di.dogServiceModule
 import com.work.network.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -22,5 +23,6 @@ class CatAndDogApplication: Application() {
 val appModule = listOf(
     networkModule,
     catModule,
-    catServiceModule
+    catServiceModule,
+    dogServiceModule
 )

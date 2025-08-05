@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":features:cat"))
     implementation(project(":shares:cat-service"))
+    implementation(project(":shares:dog-service"))
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

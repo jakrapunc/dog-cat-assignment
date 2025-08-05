@@ -37,7 +37,7 @@ class GetConcurrentDogListUseCase(
                 timeStamp = convertTimeStampUseCase.invoke(time)
             )
         }
-        
+
         return flowOf(dogDataList)
     }
 }
