@@ -3,12 +3,12 @@ package com.work.network.repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import retrofit2.HttpException
-import retrofit2.Response
 import java.io.IOException
 
 abstract class NetworkBoundResource<ResponseType> {
@@ -20,13 +20,11 @@ abstract class NetworkBoundResource<ResponseType> {
         if (shouldFetch(initialLocalData)) {
 
             try {
-                val apiResponse = createCall()
-                if (apiResponse.isSuccessful && apiResponse.body() != null) {
-                    saveCallResult(apiResponse.body()!!)
-                    emit(apiResponse.body()!!)
-                } else {
-                    throw HttpException(apiResponse)
-                }
+                val apiFlow = createCall()
+                val apiResponse = apiFlow.first()
+
+                saveCallResult(apiResponse)
+                emitAll(apiFlow)
             } catch (e: HttpException) {
                 throw e
             } catch (e: IOException) {
@@ -35,15 +33,15 @@ abstract class NetworkBoundResource<ResponseType> {
                 throw e
             }
         } else {
-            emitAll(localDataFlow.map { it })
+            emitAll(localDataFlow)
         }
     }.flowOn(Dispatchers.IO)
 
-    protected abstract suspend fun saveCallResult(item: ResponseType)
+    protected fun saveCallResult(item: ResponseType) {}
 
-    protected suspend fun shouldFetch(data: ResponseType?): Boolean = true
+    protected fun shouldFetch(data: ResponseType?): Boolean = true
 
-    protected abstract suspend fun loadFromDb(): Flow<ResponseType>
+    protected fun loadFromDb(): Flow<ResponseType> = flowOf()
 
-    protected abstract suspend fun createCall(): Response<ResponseType>
+    protected abstract suspend fun createCall(): Flow<ResponseType>
 }
