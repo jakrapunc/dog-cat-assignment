@@ -11,7 +11,6 @@ val catServiceModule = module {
     factory<ICatRemote> {
         CatRemote(
             get(),
-            get(named("io"))
         )
     }
 

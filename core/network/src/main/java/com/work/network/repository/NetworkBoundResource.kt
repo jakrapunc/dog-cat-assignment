@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.HttpException
+import retrofit2.Response
 import java.io.IOException
 
 abstract class NetworkBoundResource<ResponseType> {
@@ -18,19 +19,13 @@ abstract class NetworkBoundResource<ResponseType> {
         val initialLocalData = localDataFlow.firstOrNull() // Get current value to decide shouldFetch
 
         if (shouldFetch(initialLocalData)) {
+            val response = createCall()
 
-            try {
-                val apiFlow = createCall()
-                val apiResponse = apiFlow.first()
-
-                saveCallResult(apiResponse)
-                emitAll(apiFlow)
-            } catch (e: HttpException) {
-                throw e
-            } catch (e: IOException) {
-                throw e
-            } catch (e: Exception) {
-                throw e
+            if (response.isSuccessful && response.body() != null) {
+                saveCallResult(response.body()!!)
+                emit(response.body()!!)
+            } else {
+                throw Exception("Data is null")
             }
         } else {
             emitAll(localDataFlow)
@@ -43,5 +38,5 @@ abstract class NetworkBoundResource<ResponseType> {
 
     protected fun loadFromDb(): Flow<ResponseType> = flowOf()
 
-    protected abstract suspend fun createCall(): Flow<ResponseType>
+    protected abstract suspend fun createCall(): Response<ResponseType>
 }

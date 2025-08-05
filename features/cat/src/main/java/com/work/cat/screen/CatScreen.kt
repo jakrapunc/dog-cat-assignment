@@ -36,7 +36,7 @@ fun CatScreen(
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
         ) {
-            items(uiState.breeds) { item ->
+            items(uiState.breeds?.data ?: emptyList()) { item ->
                 Text(
                     text = item.breed
                 )

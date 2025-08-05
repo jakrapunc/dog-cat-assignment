@@ -2,8 +2,8 @@ package com.work.cat.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.work.cat_service.data.model.CatBreedItem
 import com.work.cat_service.data.model.request.BreedsRequest
+import com.work.cat_service.data.model.response.CatBreedsResponse
 import com.work.cat_service.data.service.repository.ICatRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ class CatScreenViewModel(
     private val catRepository: ICatRepository,
     private val coroutineDispatcher: CoroutineDispatcher
 ): ViewModel() {
-    private val _breeds = MutableStateFlow<List<CatBreedItem>>(emptyList())
+    private val _breeds = MutableStateFlow<CatBreedsResponse?>(null)
     private val _isLoading = MutableStateFlow(false)
     private val _error = MutableStateFlow<String?>(null)
 
@@ -47,7 +47,7 @@ class CatScreenViewModel(
         viewModelScope.launch {
             catRepository.getCatBreeds(
                 BreedsRequest(
-                    limit = 10
+                    limit = 25
                 )
             ).onStart {
                 _isLoading.value = true
@@ -63,7 +63,7 @@ class CatScreenViewModel(
     }
 
     data class UIState(
-        val breeds: List<CatBreedItem> = emptyList(),
+        val breeds: CatBreedsResponse? = null,
         val isLoading: Boolean = false,
         val error: String? = null
     )
