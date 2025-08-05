@@ -1,4 +1,4 @@
-package com.work.cat_service.data.di
+package com.work.cat_service.di
 
 import com.work.cat_service.data.service.repository.CatRepository
 import com.work.cat_service.data.service.repository.ICatRepository

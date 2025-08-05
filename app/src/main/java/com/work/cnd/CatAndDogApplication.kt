@@ -2,7 +2,7 @@ package com.work.cnd
 
 import android.app.Application
 import com.work.cat.di.catModule
-import com.work.cat_service.data.di.catServiceModule
+import com.work.cat_service.di.catServiceModule
 import com.work.network.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
