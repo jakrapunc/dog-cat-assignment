@@ -39,13 +39,9 @@ abstract class NetworkBoundResource<ResponseType> {
         }
     }.flowOn(Dispatchers.IO)
 
-    protected suspend fun fetchFromNetwork(dbSource: ResponseType?) {
-
-    }
-
     protected abstract suspend fun saveCallResult(item: ResponseType)
 
-    protected abstract suspend fun shouldFetch(data: ResponseType?): Boolean
+    protected suspend fun shouldFetch(data: ResponseType?): Boolean = true
 
     protected abstract suspend fun loadFromDb(): Flow<ResponseType>
 
