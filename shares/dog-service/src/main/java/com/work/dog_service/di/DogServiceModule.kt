@@ -23,23 +23,23 @@ val dogServiceModule = module {
         )
     }
 
-    factory {
-        ConvertTimeStampUseCase()
-    }
-
-    factory {
+    factory<GetSequenceDogListUseCase> {
         GetSequenceDogListUseCase(
             get(),
-            get(named("io")),
-            get()
+            get(),
+            get(named("io"))
         )
     }
 
-    factory {
+    factory<GetConcurrentDogListUseCase> {
         GetConcurrentDogListUseCase(
             get(),
-            get(named("io")),
-            get()
+            get(),
+            get(named("io"))
         )
+    }
+
+    factory<ConvertTimeStampUseCase> {
+        ConvertTimeStampUseCase()
     }
 }

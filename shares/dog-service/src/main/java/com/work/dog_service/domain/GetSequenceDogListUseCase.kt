@@ -10,8 +10,8 @@ import kotlinx.coroutines.withContext
 
 class GetSequenceDogListUseCase(
     private val dogRepository: IDogRepository,
-    private val coroutineDispatcher: CoroutineDispatcher,
-    private val convertTimeStampUseCase: ConvertTimeStampUseCase
+    private val convertTimeStampUseCase: ConvertTimeStampUseCase,
+    private val coroutineDispatcher: CoroutineDispatcher
 ) {
     suspend fun invoke(size: Int): Flow<List<DogData?>> {
         val dogDataList = withContext(coroutineDispatcher) {
