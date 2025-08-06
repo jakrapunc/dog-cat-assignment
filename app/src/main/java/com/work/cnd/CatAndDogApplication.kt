@@ -6,6 +6,7 @@ import com.work.cat_service.di.catServiceModule
 import com.work.dog.di.dogModule
 import com.work.dog_service.di.dogServiceModule
 import com.work.network.di.networkModule
+import com.work.profile_service.di.profileServiceModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -25,6 +26,7 @@ val appModule = listOf(
     networkModule,
     catServiceModule,
     dogServiceModule,
+    profileServiceModule,
     catModule,
     dogModule,
 )

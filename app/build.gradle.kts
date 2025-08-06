@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":features:dog"))
     implementation(project(":shares:cat-service"))
     implementation(project(":shares:dog-service"))
+    implementation(project(":shares:profile-service"))
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
