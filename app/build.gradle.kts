@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":features:cat"))
     implementation(project(":features:dog"))
+    implementation(project(":features:profile"))
     implementation(project(":shares:cat-service"))
     implementation(project(":shares:dog-service"))
     implementation(project(":shares:profile-service"))

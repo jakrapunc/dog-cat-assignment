@@ -16,5 +16,7 @@ data class ProfileData(
     @SerializedName("cell")
     val cell: String,
     @SerializedName("dob")
-    val dob: ProfileDOB
+    val dob: ProfileDOB,
+    @SerializedName("nat")
+    val nat: String
 )

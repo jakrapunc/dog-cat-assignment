@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.work.cat.screen.CatScreen
 import com.work.cnd.ui.theme.CatAndDogTheme
 import com.work.dog.screen.DogScreen
+import com.work.profile.screen.ProfileScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    DogScreen()
+    ProfileScreen()
 }
 
 @Preview(showBackground = true)
