@@ -38,7 +38,13 @@ class MainActivity : ComponentActivity() {
                         composable<Route.SplashScreen> {
                             SplashScreen(
                                 onNavigate = {
-                                    navController.navigate(Route.HomeScreen)
+                                    navController.navigate(Route.HomeScreen) {
+                                        popUpTo(Route.SplashScreen) {
+                                            inclusive = true // This is crucial to remove the SplashScreen itself
+                                        }
+                                        // Optional: Avoid multiple copies of HomeScreen if already on top
+                                        launchSingleTop = true
+                                    }
                                 }
                             )
                         }

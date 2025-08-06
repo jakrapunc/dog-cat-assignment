@@ -77,18 +77,21 @@ fun HomeScreen() {
         bottomBar = {
             NavigationBar(
                 windowInsets = NavigationBarDefaults.windowInsets,
-                containerColor = NavigationBarDefaults.containerColor.copy(
-                    red = 0f,
-                    green = 0f,
-                    blue = 0f,
-                    alpha = 0f
-                ),
+                containerColor = Color.White
             ) {
                 MenuItem.entries.forEachIndexed { index, item ->
                     NavigationBarItem(
                         selected = selectedDestination == index,
                         onClick = {
-                            navController.navigate(route = item.route)
+                            navController.navigate(route = item.route) {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+
+                                launchSingleTop = true
+                                // Restore state when reselecting a previously selected item
+                                restoreState = true
+                            }
                             selectedDestination = index
                         },
                         icon = {
