@@ -12,6 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.work.base.navigation.Route
 import com.work.cat.screen.CatScreen
 import com.work.cnd.ui.theme.CatAndDogTheme
@@ -26,10 +29,23 @@ class MainActivity : ComponentActivity() {
         setContent {
             CatAndDogTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    val navController = rememberNavController()
+                    NavHost(
+                        modifier = Modifier.padding(innerPadding),
+                        navController = navController,
+                        startDestination = Route.SplashScreen
+                    ) {
+                        composable<Route.SplashScreen> {
+                            SplashScreen(
+                                onNavigate = {
+                                    navController.navigate(Route.HomeScreen)
+                                }
+                            )
+                        }
+                        composable<Route.HomeScreen> {
+                            HomeScreen()
+                        }
+                    }
                 }
             }
         }
