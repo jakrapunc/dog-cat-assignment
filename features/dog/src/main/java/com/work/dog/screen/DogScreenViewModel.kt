@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -46,10 +45,10 @@ class DogScreenViewModel(
 
     fun loadConcurrentDogList(size: Int) {
         viewModelScope.launch {
+            _isLoading.value = true
+
             getConcurrentDogListUseCase.invoke(size)
-                .onStart {
-                    _isLoading.value = true
-                }.catch {
+                .catch {
                     _isLoading.value = false
                     _error.value = it.message
                 }.flowOn(
@@ -63,10 +62,10 @@ class DogScreenViewModel(
 
     fun loadSequenceDogList(size: Int) {
         viewModelScope.launch {
+            _isLoading.value = true
+            
             getSequenceDogListUseCase.invoke(size)
-                .onStart {
-                    _isLoading.value = true
-                }.catch {
+                .catch {
                     _isLoading.value = false
                     _error.value = it.message
                 }.flowOn(

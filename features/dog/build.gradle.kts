@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":core:base"))
     implementation(project(":core:network"))
     implementation(project(":shares:dog-service"))
+    implementation(project(":shares:design"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
