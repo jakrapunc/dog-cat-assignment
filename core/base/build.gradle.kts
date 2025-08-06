@@ -59,9 +59,11 @@ dependencies {
     api(libs.androidx.material3)
     api(libs.androidx.appcompat)
     api(libs.material)
-
     debugApi(libs.androidx.ui.tooling)
     debugApi(libs.androidx.ui.test.manifest)
+
+    //coil
+    api(libs.coil.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

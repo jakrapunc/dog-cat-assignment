@@ -78,7 +78,7 @@ class DogScreenViewModel(
         }
     }
 
-    fun onEvent(event: UIEvent) {
+    fun onUIEvent(event: UIEvent) {
         when (event) {
             UIEvent.SequenceReload -> loadSequenceDogList(3)
             UIEvent.ConcurrentReload -> loadConcurrentDogList(3)

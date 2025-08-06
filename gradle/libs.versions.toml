@@ -19,6 +19,7 @@ room = "2.7.2"
 ksp = "2.2.0-2.0.2"
 appcompat = "1.6.1"
 material = "1.10.0"
+coilCompose = "2.4.0"
 compileSdkVersion = "36"
 minSdkVersion = "24"
 targetSdkVersion = "36"
@@ -60,6 +61,8 @@ room-ksp = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
