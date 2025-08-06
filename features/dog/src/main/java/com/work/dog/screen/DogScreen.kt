@@ -95,7 +95,7 @@ fun DogScreenContent(
             modifier = Modifier.fillMaxSize()
                 .background(Color.White)
                 .padding(it)
-                .padding(20.dp)
+                .padding(horizontal = 20.dp)
         ) {
             Text(
                 text = "Dogs",

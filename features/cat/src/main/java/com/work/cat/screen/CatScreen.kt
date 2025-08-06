@@ -59,7 +59,10 @@ fun CatScreen(
 fun CatScreen(
     uiState: CatScreenViewModel.UIState,
 ) {
-    Scaffold() {
+    Scaffold(
+        modifier = Modifier.fillMaxSize()
+            .background(Color.White),
+    ) {
         if (uiState.isLoading) {
             LoadingScreen()
         } else {
@@ -79,10 +82,11 @@ fun CatScreenContent(
     var currentExpand by rememberSaveable { mutableStateOf<Int?>(null) }
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(20.dp)
+            .then(modifier)
+            .padding(horizontal = 20.dp)
     ) {
         Text(
             text = "Cats",

@@ -48,19 +48,13 @@ fun ProfileScreen(
     uiState: ProfileScreenViewModel.UIState,
     onUIEvent: (ProfileScreenViewModel.UIEvent) -> Unit
 ) {
-    Column(
-        modifier = Modifier.fillMaxSize()
-            .background(Color.White)
-            .padding(20.dp)
-    ) {
-        if (uiState.isLoading) {
-            LoadingScreen()
-        } else {
-            ProfileContent(
-                uiState = uiState,
-                onUIEvent = onUIEvent
-            )
-        }
+    if (uiState.isLoading) {
+        LoadingScreen()
+    } else {
+        ProfileContent(
+            uiState = uiState,
+            onUIEvent = onUIEvent
+        )
     }
 }
 
@@ -88,6 +82,7 @@ fun ProfileContent(
             modifier = Modifier.fillMaxWidth()
                 .background(Color.White)
                 .padding(padding)
+                .padding(horizontal = 20.dp)
         ) {
             Text(
                 text = "Me",
@@ -98,7 +93,7 @@ fun ProfileContent(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 36.dp),
+                    .padding(horizontal = 24.dp),
             ) {
                 item(key = "image") {
                     Row(
