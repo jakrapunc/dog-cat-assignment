@@ -22,6 +22,7 @@ material = "1.10.0"
 coilCompose = "2.4.0"
 navCompose = "2.9.3"
 kotlinxSerializationJson = "1.9.0"
+mockk = "1.14.5"
 compileSdkVersion = "36"
 minSdkVersion = "24"
 targetSdkVersion = "36"
@@ -29,6 +30,7 @@ targetSdkVersion = "36"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -60,6 +62,7 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinBom" }
 koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinBom" }
 
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
 room = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ksp = { module = "androidx.room:room-compiler", version.ref = "room" }
