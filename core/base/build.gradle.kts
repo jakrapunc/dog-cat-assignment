@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -61,6 +62,10 @@ dependencies {
     api(libs.material)
     debugApi(libs.androidx.ui.tooling)
     debugApi(libs.androidx.ui.test.manifest)
+
+    //navigation
+    api(libs.androidx.navigation.compose)
+    api(libs.kotlin.serialization.json)
 
     //coil
     api(libs.coil.compose)

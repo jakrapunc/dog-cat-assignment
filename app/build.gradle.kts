@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -45,6 +46,7 @@ dependencies {
     implementation(project(":features:cat"))
     implementation(project(":features:dog"))
     implementation(project(":features:profile"))
+    implementation(project(":features:home"))
     implementation(project(":shares:cat-service"))
     implementation(project(":shares:dog-service"))
     implementation(project(":shares:profile-service"))

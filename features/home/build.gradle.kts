@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -38,7 +39,11 @@ android {
 
 dependencies {
     implementation(project(":core:base"))
-    
+    implementation(project(":shares:design"))
+    implementation(project(":features:cat"))
+    implementation(project(":features:dog"))
+    implementation(project(":features:profile"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

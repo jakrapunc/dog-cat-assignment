@@ -12,9 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.work.base.navigation.Route
 import com.work.cat.screen.CatScreen
 import com.work.cnd.ui.theme.CatAndDogTheme
 import com.work.dog.screen.DogScreen
+import com.work.home.ui.HomeScreen
 import com.work.profile.screen.ProfileScreen
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +38,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    ProfileScreen()
+    HomeScreen()
 }
 
 @Preview(showBackground = true)
