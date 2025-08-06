@@ -63,7 +63,7 @@ class DogScreenViewModel(
     fun loadSequenceDogList(size: Int) {
         viewModelScope.launch {
             _isLoading.value = true
-            
+
             getSequenceDogListUseCase.invoke(size)
                 .catch {
                     _isLoading.value = false
