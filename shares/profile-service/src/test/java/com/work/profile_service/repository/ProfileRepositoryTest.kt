@@ -1,4 +1,4 @@
-package com.work.profile_service
+package com.work.profile_service.repository
 
 import com.work.profile_service.data.model.response.ProfileResponse
 import com.work.profile_service.data.service.repository.IProfileRepository
@@ -8,7 +8,7 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit4.MockKRule
-import junit.framework.TestCase.fail
+import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -19,7 +19,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-
 
 @ExperimentalCoroutinesApi
 class ProfileRepositoryTest {
@@ -54,23 +53,24 @@ class ProfileRepositoryTest {
     }
 
     @Test
-    fun `getProfile should throw exception when remote returns unsuccessful response without body`() = runTest {
-        // Given
-        val errorResponse: Response<ProfileResponse> = Response.error(
-            404,
-            "Error".toResponseBody("text/plain".toMediaTypeOrNull())
-        )
-        coEvery { mockProfileRemote.getProfile() } returns errorResponse
+    fun `getProfile should throw exception when remote returns unsuccessful response without body`() =
+        runTest {
+            // Given
+            val errorResponse: Response<ProfileResponse> = Response.error(
+                404,
+                "Error".toResponseBody("text/plain".toMediaTypeOrNull())
+            )
+            coEvery { mockProfileRemote.getProfile() } returns errorResponse
 
-        // When & Then
-        try {
-            profileRepository.getProfile().first() // Trigger the flow and collection
-            fail("Expected an exception to be thrown for unsuccessful response")
-        } catch (e: Exception) {
-            Assert.assertTrue(e is Throwable) // Be more specific if NBR defines it
+            // When & Then
+            try {
+                profileRepository.getProfile().first() // Trigger the flow and collection
+                TestCase.fail("Expected an exception to be thrown for unsuccessful response")
+            } catch (e: Exception) {
+                Assert.assertTrue(e is Throwable) // Be more specific if NBR defines it
+            }
+            coVerify(exactly = 1) { mockProfileRemote.getProfile() }
         }
-        coVerify(exactly = 1) { mockProfileRemote.getProfile() }
-    }
 
     @Test
     fun `getProfile should throw exception when remote call itself fails`() = runTest {
@@ -81,7 +81,7 @@ class ProfileRepositoryTest {
         // When & Then
         try {
             profileRepository.getProfile().first()
-            fail("Expected a RuntimeException to be thrown")
+            TestCase.fail("Expected a RuntimeException to be thrown")
         } catch (e: RuntimeException) {
             Assert.assertEquals(networkException.message, e.message)
         }

@@ -1,4 +1,4 @@
-package com.work.profile_service
+package com.work.profile_service.repository
 
 import com.work.network.base.ApiManager
 import com.work.profile_service.data.model.response.ProfileResponse
@@ -20,6 +20,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @ExperimentalCoroutinesApi
@@ -38,7 +39,7 @@ class ProfileRemoteTest {
 
     @Before
     fun setUp() {
-        val mockRetrofit = mockk<retrofit2.Retrofit>() // Create a mock for Retrofit
+        val mockRetrofit = mockk<Retrofit>() // Create a mock for Retrofit
 
         every {
             mockApiManager.init(
@@ -56,27 +57,29 @@ class ProfileRemoteTest {
     }
 
     @Test
-    fun `getProfile should call ProfileService getProfile and return its successful response`() = runTest {
-        //Given
-        val expectedApiResponse = ProfileResponse(results = listOf(),)
-        val successResponse: Response<ProfileResponse> = Response.success(expectedApiResponse)
+    fun `getProfile should call ProfileService getProfile and return its successful response`() =
+        runTest {
+            //Given
+            val expectedApiResponse = ProfileResponse(results = listOf(),)
+            val successResponse: Response<ProfileResponse> = Response.success(expectedApiResponse)
 
-        coEvery { mockProfileService.getProfile() } returns successResponse
+            coEvery { mockProfileService.getProfile() } returns successResponse
 
-        //When
-        val actualResponse = profileRemote.getProfile()
+            //When
+            val actualResponse = profileRemote.getProfile()
 
-        //Then
-        coVerify(exactly = 1) { mockProfileService.getProfile() }
+            //Then
+            coVerify(exactly = 1) { mockProfileService.getProfile() }
 
-        Assert.assertEquals(successResponse, actualResponse)
-        Assert.assertEquals(expectedApiResponse, actualResponse.body())
-    }
+            Assert.assertEquals(successResponse, actualResponse)
+            Assert.assertEquals(expectedApiResponse, actualResponse.body())
+        }
 
     @Test
     fun `getProfile should handle error response from ProfileService`() = runTest {
         //Given
-        val errorResponseBody = "{\"error\":\"Not found\"}".toResponseBody("application/json".toMediaTypeOrNull())
+        val errorResponseBody =
+            "{\"error\":\"Not found\"}".toResponseBody("application/json".toMediaTypeOrNull())
         val errorResponse: Response<ProfileResponse> = Response.error(404, errorResponseBody)
 
         coEvery { mockProfileService.getProfile() } returns errorResponse
