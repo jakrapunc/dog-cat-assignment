@@ -1,6 +1,7 @@
 package com.work.home.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -68,7 +69,19 @@ fun HomeScreen() {
                 )
 
                 Icon(
-                    modifier = Modifier.size(48.dp),
+                    modifier = Modifier.size(48.dp)
+                        .clickable {
+                            selectedDestination = 2
+                            navController.navigate(route = Route.ProfileScreen) {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+
+                                launchSingleTop = true
+
+                                restoreState = true
+                            }
+                        },
                     painter = painterResource(id = com.work.design.R.drawable.account),
                     contentDescription = ""
                 )
