@@ -112,8 +112,9 @@ fun HomeScreen() {
                             )
                         },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedTextColor = Color.Companion.Blue,
-                            indicatorColor = Color.Companion.Transparent
+                            selectedTextColor = Color.Blue,
+                            indicatorColor = Color.Transparent,
+                            selectedIconColor = Color.Black
                         )
                     )
                 }
