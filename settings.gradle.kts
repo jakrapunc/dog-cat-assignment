@@ -1,0 +1,34 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "CatAndDog"
+include(":app")
+include(":core")
+include(":core:network")
+include(":core:base")
+include(":shares:cat-service")
+include(":features:cat")
+include(":shares:dog-service")
+include(":features:dog")
+include(":shares:design")
+include(":shares:profile-service")
+include(":features:profile")
+include(":features:home")
