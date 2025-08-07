@@ -26,7 +26,7 @@ class GetSequenceDogListUseCase(
                         )
                     )
                 } catch (e: Exception) {
-                    null
+                    result.add(null)
                 }
             }
             result
